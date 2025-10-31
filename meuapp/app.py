@@ -13,13 +13,13 @@ from sklearn.metrics import accuracy_score
 # CONFIGURAÇÃO DA PÁGINA
 # =========================
 st.set_page_config(page_title="Análise de Obesidade", layout="wide")
-st.title("⚖️ Previsão de Obesidade - Mini ML App")
+st.title(" Previsão de Obesidade - Mini ML App")
 st.write("Envie um CSV com dados de saúde ou use o dataset de exemplo.")
 
 # =========================
 # UPLOAD DO CSV
 # =========================
-uploaded_file = st.file_uploader("📂 Envie seu CSV", type=["csv"])
+uploaded_file = st.file_uploader(" Envie seu CSV", type=["csv"])
 # Dataset padrão se nenhum CSV enviado
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -43,7 +43,7 @@ else:
     }
     df = pd.DataFrame(dados)
 
-st.subheader("📊 Visualização do dataset")
+st.subheader(" Visualização do dataset")
 st.dataframe(df.head())
 
 # =========================
@@ -92,14 +92,14 @@ for nome, modelo in modelos.items():
 melhor_modelo_nome = max(acuracias, key=acuracias.get)
 melhor_modelo = modelos[melhor_modelo_nome]
 
-st.subheader("🎯 Acurácia dos modelos")
+st.subheader(" Acurácia dos modelos")
 st.write({k: f"{v:.2%}" for k, v in acuracias.items()})
-st.success(f"🏆 Melhor modelo: {melhor_modelo_nome}")
+st.success(f" Melhor modelo: {melhor_modelo_nome}")
 
 # =========================
 # ENTRADA DO USUÁRIO
 # =========================
-st.subheader("🧠 Previsão de Obesidade - Insira seus dados")
+st.subheader(" Previsão de Obesidade - Insira seus dados")
 
 idade = st.slider("Idade", 0, 100, 25)
 altura = st.slider("Altura (cm)", 100, 220, 170)
@@ -109,8 +109,9 @@ genero_idx = encoders['Gender'].transform([genero])[0]
 
 entrada = np.array([[idade, altura, peso, genero_idx]])
 
-if st.button("🔍 Prever Obesidade"):
+if st.button(" ° Prever Obesidade °"):
     pred = melhor_modelo.predict(entrada)[0]
     classe = encoders['Obesity'].inverse_transform([pred])[0]
-    st.write(f"⚖️ **Resultado da análise:** {classe}")
-    st.write(f"📈 **Modelo utilizado:** {melhor_modelo_nome}")
+    st.write(f" **Resultado da análise:** {classe}")
+    st.write(f" **Modelo utilizado:** {melhor_modelo_nome}")
+
